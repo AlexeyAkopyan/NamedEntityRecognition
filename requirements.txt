@@ -1,0 +1,8 @@
+peft==0.7.0
+transformers[torch]==4.35.2
+sentencepiece==0.1.99
+datasets==2.15.0
+evaluate==0.4.1
+seqeval==1.2.2
+huggingface_hub==0.19.4
+wandb==0.16.1
