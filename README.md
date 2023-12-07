@@ -48,7 +48,7 @@ An example of usage is also provided in the _ner_deberta_base_A.ipynb_ notebook 
 The solution with this approach implemented only for the system A. The adapter also can be found on Hugging Face, but the adapter do not have Inference API.
 - system A: [alexeyak/deberta-v3-large-ner-lora](https://huggingface.co/alexeyak/deberta-v3-large-ner-lora)
   
-Usage of DeBERTa-v3-large-lora is less straightforward. Firsly it is required to set a label2id dict, then initialize tokenizer and model from base pre-trained model and eventually apply trained LoRA to base model. 
+The usage of DeBERTa-v3-large-lora is less straightforward. Firstly, it is required to set up a label2id dictionary, then load the tokenizer and the base pre-trained model, and eventually apply the trained LoRA adapters to the base model.
 ```python
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 from peft import PeftModel
