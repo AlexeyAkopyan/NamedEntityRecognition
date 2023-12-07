@@ -5,7 +5,7 @@
 <img width="987" alt="image" src="https://github.com/AlexeyAkopyan/NamedEntityRecognition/assets/45924298/6a30c355-2ca7-4a2a-8f4a-c99d5851c358">
 
 ## Overview
-This repository presents a solution for the fine-tuning [DeBERTa-v3](microsoft/deberta-v3-base) model for the Named Entity Recognition task on the English part of the [MutiNERD](https://huggingface.co/datasets/Babelscape/multinerd) dataset. There are two system conditions: 
+This repository presents a solution for the fine-tuning [DeBERTa-v3](https://huggingface.co/microsoft/deberta-v3-base) model for the Named Entity Recognition task on the English part of the [MutiNERD](https://huggingface.co/datasets/Babelscape/multinerd) dataset. There are two system conditions: 
 
 - **System A** – fine-tuning to predict all entity types  presented in the dataset;  
 - **System B** – fine-tuning to predict only 5 entity types (PERSON(PER), ORGANIZATION(ORG), LOCATION(LOC), DISEASES(DIS), ANIMAL(ANIM)) and convert all other types to O tag.
@@ -95,4 +95,3 @@ In this solution, I fine-tuned the [DeBERTa-v3](https://arxiv.org/abs/2111.09543
 I quickly achieved high-quality results with the DeBERTa-base model using nearly default hyperparameters and then focused on attaining similar results with the DeBERTa-large model. Due to restrictions in Google Colab GPU memory, instead of fine-tuning the entire model, I applied the [LoRA](https://arxiv.org/abs/2106.09685) method specifically to query and key matrices in attention heads and lowered the LoRA rank to reduce the number of trainable parameters. My goal was to maximize the training batch size, [believing](https://arxiv.org/abs/1804.00247) that larger batch sizes lead to better results with large models. To achieve this, I employed several techniques (FP16, gradient checkpoint, and gradient accumulation) to reduce memory usage for trainable parameters and increase the batch size. I also experimented with loading the model in quantized int8 mode but found it significantly slowed down training speed, so I abandoned this method. Additionally, I observed that incorporating warmup steps and setting a higher learning rate contributed to achieving better results in fewer steps.
 
 Although I obtained decent results with the large model, I did not manage to match the performance of the base model. It's possible that I underestimated the impact of class imbalance (I did).  I also came across an [article](https://arxiv.org/abs/2310.01208) where authors fine-tuned the Llama-2 model for the NER task, but I didn't have enough time to explore this approach. Nonetheless, I achieved great results with the base model and satisfactory results with the large one.
-
