@@ -1,5 +1,5 @@
 peft==0.7.0
-transformers[torch]==4.36.0
+transformers[torch]
 sentencepiece==0.1.99
 datasets==2.15.0
 evaluate==0.4.1
